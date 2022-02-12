@@ -17,7 +17,7 @@ export default function(options) {
 		});
 	},
 
-	o = Object.assign({
+	o = {
 		selector: 0,
 		source: 0,
 		minChars: 3,
@@ -32,8 +32,9 @@ export default function(options) {
 			let re = RegExp("(" + search.replace(/ /g,'|') + ")", "gi");
 			return '<div class="autocomplete-suggestion" data-val="' + item + '">' + item.replace(re, "<b>$1</b>") + '</div>';
 		},
-		onSelect(e, term, item){}
-	}, options),
+		onSelect(e, term, item){},
+		...options
+	},
 	// init
 	elems = typeof o.selector == 'object' ? [o.selector] : document.querySelectorAll(o.selector);
 	for (let that of elems) {
